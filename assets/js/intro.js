@@ -1,5 +1,5 @@
-const intro=document.getElementById("intro-screen");
-const skip=document.getElementById("intro-skip");
+const intro = document.getElementById("intro-screen");
+const skip = document.getElementById("intro-skip");
 function closeIntro(){
   if(!intro||intro.classList.contains("intro-hidden")) return;
   intro.classList.add("intro-hidden");
