@@ -1,1 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 760" role="img" aria-labelledby="title desc">
+  <title id="title">Sheet of paper</title>
+  <desc id="desc">A slightly curved white sheet of paper with a folded corner.</desc>
+  <defs>
+    <linearGradient id="paperFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.72" stop-color="#eef1f4"/>
+      <stop offset="1" stop-color="#d8dde3"/>
+    </linearGradient>
+    <linearGradient id="foldFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d7b75f"/>
+      <stop offset="1" stop-color="#a88735"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000000" flood-opacity=".34"/>
+    </filter>
+  </defs>
 
+  <g filter="url(#shadow)" transform="rotate(-2 300 380)">
+    <path
+      d="M118 55
+         Q98 58 96 82
+         L88 650
+         Q86 682 118 692
+         Q292 722 472 689
+         Q499 684 500 655
+         L506 172
+         L390 58
+         Q378 47 359 48
+         Z"
+      fill="url(#paperFill)"
+      stroke="#b9c1ca"
+      stroke-width="7"
+      stroke-linejoin="round"/>
+
+    <path
+      d="M390 58 L390 153 Q390 172 410 172 L506 172 Z"
+      fill="url(#foldFill)"
+      stroke="#b9c1ca"
+      stroke-width="7"
+      stroke-linejoin="round"/>
+
+    <path
+      d="M135 625
+         Q288 650 457 624"
+      fill="none"
+      stroke="#cbd1d8"
+      stroke-width="8"
+      stroke-linecap="round"
+      opacity=".65"/>
+
+    <path
+      d="M124 104
+         Q286 83 454 104"
+      fill="none"
+      stroke="#ffffff"
+      stroke-width="10"
+      stroke-linecap="round"
+      opacity=".72"/>
+  </g>
+</svg>
