@@ -15,20 +15,53 @@
 </head>
 
 <body>
-  const intro=document.getElementById("intro-screen");
-const skip=document.getElementById("intro-skip");
-function closeIntro(){
-  if(!intro||intro.classList.contains("intro-hidden")) return;
-  intro.classList.add("intro-hidden");
-  document.body.classList.remove("intro-active");
-  setTimeout(()=>intro.remove(),800);
-}
-if(intro){
-  document.body.classList.add("intro-active");
-  setTimeout(()=>intro.classList.add("impact"),4100);
-  setTimeout(closeIntro,6250);
-  skip?.addEventListener("click",closeIntro);
-}
+
+  <!-- INTRO ANIMATION -->
+  <div id="intro-screen" aria-hidden="true">
+
+    <button id="intro-skip" class="intro-skip" type="button">
+      Skip Intro
+    </button>
+
+    <div class="intro-stage">
+
+      <img
+        class="intro-object intro-paper"
+        src="assets/images/paper.svg"
+        alt=""
+      >
+
+      <img
+        class="intro-object intro-scissors"
+        src="assets/images/scissors.svg"
+        alt=""
+      >
+
+      <img
+        class="intro-object intro-rock"
+        src="assets/images/rock.svg"
+        alt=""
+      >
+
+      <div class="intro-flash"></div>
+
+      <div class="dust dust-a"></div>
+      <div class="dust dust-b"></div>
+      <div class="dust dust-c"></div>
+
+      <p class="intro-logo">
+        IFRPS
+      </p>
+
+      <p class="intro-tagline">
+        The game is simple. The competition is real.
+      </p>
+
+    </div>
+
+  </div>
+
+  <!-- WEBSITE -->
   <header class="site-header">
     <a class="logo" href="index.html">IFRPS</a>
 
@@ -67,5 +100,8 @@ if(intro){
   <footer>
     <p>&copy; 2026 IFRPS. All rights reserved.</p>
   </footer>
+
+  <script src="assets/js/intro.js"></script>
+
 </body>
 </html>
