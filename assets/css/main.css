@@ -127,5 +127,32 @@ footer {
   .hero {
     padding: 60px 0;
   }
+  body.intro-active{overflow:hidden}
+#intro-screen{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;overflow:hidden;background:radial-gradient(circle at 50% 40%,#263a50 0%,#101923 55%,#070b10 100%);transition:opacity .75s ease,visibility .75s ease}
+#intro-screen.intro-hidden{opacity:0;visibility:hidden;pointer-events:none}
+.intro-stage{position:relative;width:min(92vw,1000px);height:min(84vh,760px)}
+.intro-object{position:absolute;left:50%;top:50%;pointer-events:none;user-select:none;will-change:transform,opacity}
+.intro-paper{z-index:1;width:min(34vw,280px);opacity:0;animation:paperFloat 2.45s cubic-bezier(.2,.75,.3,1) forwards}
+.intro-scissors{z-index:2;width:min(34vw,285px);opacity:0;animation:scissorsStrike .86s 2.35s cubic-bezier(.18,.86,.22,1.08) forwards}
+.intro-rock{z-index:4;width:min(35vw,310px);opacity:0;animation:rockCrash .74s 3.55s cubic-bezier(.5,0,.95,.58) forwards}
+.intro-flash{position:absolute;z-index:5;left:50%;top:55%;width:280px;height:280px;border-radius:50%;opacity:0;transform:translate(-50%,-50%) scale(.15);background:radial-gradient(circle,rgba(255,244,195,.95),rgba(215,183,95,.42) 35%,transparent 72%);animation:impactFlash .42s 4.12s ease-out forwards}
+.dust{position:absolute;z-index:3;left:50%;top:61%;width:44px;height:44px;border-radius:50%;opacity:0;background:rgba(185,176,156,.54);filter:blur(7px)}
+.dust-a{animation:dustLeft .9s 4.08s ease-out forwards}.dust-b{animation:dustRight .9s 4.08s ease-out forwards}.dust-c{animation:dustUp .9s 4.08s ease-out forwards}
+.intro-logo{position:absolute;z-index:7;left:50%;top:52%;margin:0;opacity:0;color:#f6f7f8;font-size:clamp(2.6rem,8vw,6rem);font-weight:900;letter-spacing:.18em;transform:translate(-50%,-50%) scale(.92);animation:logoReveal .85s 4.65s ease-out forwards}
+.intro-tagline{position:absolute;z-index:7;left:50%;top:63%;width:90%;margin:0;opacity:0;color:#d7b75f;text-align:center;font-size:clamp(.72rem,1.8vw,1rem);font-weight:800;letter-spacing:.17em;text-transform:uppercase;transform:translateX(-50%);animation:taglineReveal .8s 4.95s ease-out forwards}
+.intro-skip{position:absolute;z-index:10;top:20px;right:20px;padding:9px 15px;border:1px solid rgba(255,255,255,.28);border-radius:999px;color:#f6f7f8;background:rgba(0,0,0,.24);font:inherit;cursor:pointer}
+#intro-screen.impact{animation:screenShake .34s linear}
+@keyframes paperFloat{0%{opacity:0;transform:translate(-50%,-155vh) rotate(-18deg) scale(.84)}12%{opacity:1}35%{transform:translate(-38%,-112%) rotate(11deg) scale(.95)}58%{transform:translate(-59%,-78%) rotate(-8deg)}80%{transform:translate(-44%,-57%) rotate(5deg)}100%{opacity:1;transform:translate(-50%,-45%) rotate(-2deg)}}
+@keyframes scissorsStrike{0%{opacity:0;transform:translate(-50%,-170vh) rotate(115deg) scale(.76)}15%{opacity:1}68%{transform:translate(-50%,-31%) rotate(-10deg) scale(1.08)}84%{transform:translate(-50%,-51%) rotate(-7deg) scale(.97)}100%{opacity:1;transform:translate(-50%,-46%) rotate(-8deg)}}
+@keyframes rockCrash{0%{opacity:0;transform:translate(-50%,-180vh) rotate(-14deg) scale(.95)}14%{opacity:1}76%{transform:translate(-50%,-27%) rotate(4deg) scale(1.15,.88)}89%{transform:translate(-50%,-49%) rotate(2deg) scale(.93,1.07)}100%{opacity:1;transform:translate(-50%,-44%) rotate(2deg)}}
+@keyframes impactFlash{0%{opacity:0;transform:translate(-50%,-50%) scale(.15)}32%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(1.55)}}
+@keyframes dustLeft{0%{opacity:0;transform:translate(-50%,-50%) scale(.35)}28%{opacity:.8}100%{opacity:0;transform:translate(-230px,28px) scale(3)}}
+@keyframes dustRight{0%{opacity:0;transform:translate(-50%,-50%) scale(.35)}28%{opacity:.8}100%{opacity:0;transform:translate(180px,22px) scale(2.8)}}
+@keyframes dustUp{0%{opacity:0;transform:translate(-50%,-50%) scale(.3)}28%{opacity:.68}100%{opacity:0;transform:translate(-15px,-170px) scale(2.5)}}
+@keyframes screenShake{0%,100%{transform:translate(0)}18%{transform:translate(-9px,5px)}36%{transform:translate(8px,-6px)}54%{transform:translate(-6px,4px)}72%{transform:translate(5px,-3px)}}
+@keyframes logoReveal{to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+@keyframes taglineReveal{from{opacity:0;transform:translate(-50%,12px)}to{opacity:1;transform:translate(-50%,0)}}
+@media(max-width:600px){.intro-paper{width:190px}.intro-scissors{width:190px}.intro-rock{width:210px}}
+@media(prefers-reduced-motion:reduce){#intro-screen{display:none}}
 }
 
