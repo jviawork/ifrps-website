@@ -127,6 +127,7 @@ footer {
   .hero {
     padding: 60px 0;
   }
+}
   /* ========================================
    IFRPS INTRO ANIMATION
 ======================================== */
@@ -617,5 +618,5 @@ body.intro-active {
     display: none;
   }
 }
-}
+
 
