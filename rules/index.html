@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Official Rules | IFRPS</title>
+  <meta name="description" content="Official IFRPS rules for competitive Rock Paper Scissors, including match formats, timing, communication, officiating and remote competition.">
+  <link rel="stylesheet" href="../assets/css/main.css">
+
+<style>
+/* ========================================
+   IFRPS OFFICIAL RULES
+======================================== */
+.crest-logo img { height: 72px; }
+.rules-site-header { padding-top: 14px; padding-bottom: 14px; }
+.rules-site-header nav a.active { color:#d7b75f; }
+.rules-hero-page { border-top:1px solid rgba(215,183,95,.2); border-bottom:1px solid rgba(215,183,95,.25); background:radial-gradient(circle at 50% 0%,rgba(215,183,95,.12),transparent 45%),linear-gradient(180deg,rgba(11,21,32,.5),rgba(4,9,14,.72)); }
+.rules-hero-inner { width:min(1180px,calc(100% - 40px)); margin:auto; padding:86px 0 58px; text-align:center; }
+.rules-hero-page h1 { font-size:clamp(3.6rem,9vw,7.2rem); text-transform:uppercase; letter-spacing:-.035em; }
+.rules-edition { color:#d7b75f; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+.rules-lead { color:#c9d0d8; font-size:1.2rem; }
+.rule-summary { max-width:980px; margin:40px auto 0; display:grid; grid-template-columns:repeat(3,1fr); border:1px solid #334151; background:rgba(7,13,19,.65); }
+.rule-summary div { padding:22px 18px; border-right:1px solid #334151; }
+.rule-summary div:last-child { border-right:0; }
+.rule-summary span,.rule-summary strong { display:block; }
+.rule-summary span { color:#84909d; font-size:.7rem; font-weight:800; letter-spacing:.14em; margin-bottom:7px; }
+.rule-summary strong { color:#fff; }
+.throws-strip { width:min(1050px,calc(100% - 40px)); margin:42px auto 10px; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.throws-strip article { text-align:center; padding:28px 15px; border:1px solid #344250; border-radius:10px; background:linear-gradient(180deg,rgba(35,54,75,.6),rgba(10,17,24,.8)); }
+.throw-icon { font-size:3.5rem; }
+.throws-strip h2 { margin:8px 0 4px; text-transform:uppercase; }
+.throws-strip p { margin:0;color:#d7b75f;font-weight:700; }
+.rules-layout { width:min(1200px,calc(100% - 40px)); margin:65px auto; display:grid; grid-template-columns:220px minmax(0,820px); gap:70px; justify-content:center; align-items:start; }
+.rules-nav { position:sticky; top:22px; padding:20px 0; border-top:2px solid #d7b75f; }
+.rules-nav p { color:#d7b75f; font-size:.72rem; letter-spacing:.18em; font-weight:900; }
+.rules-nav a { display:flex; gap:10px; padding:7px 0; color:#98a4b1; font-size:.88rem; }
+.rules-nav a:hover { color:#fff; }
+.rules-nav b { color:#d7b75f; min-width:23px; }
+.rule-section { scroll-margin-top:20px; padding:0 0 68px; margin-bottom:64px; border-bottom:1px solid #2c3946; }
+.rule-kicker { color:#d7b75f; font-weight:900; letter-spacing:.18em; font-size:.75rem; }
+.rulebook .rule-section>h2 { margin:8px 0 34px; font-size:clamp(2.4rem,5vw,4rem); line-height:1; text-transform:uppercase; }
+.rulebook h3 { margin:34px 0 10px; font-size:1.12rem; color:#f7f8fa; }
+.rulebook p,.rulebook li { color:#bcc5cf; line-height:1.75; }
+.rulebook strong { color:#fff; }
+.rulebook ol { padding-left:22px; }
+.rule-callout { margin:28px 0; padding:20px 24px; border-left:4px solid #d7b75f; background:#131f2b; color:#fff; font-weight:800; }
+.rule-callout.big { text-align:center; border-left:0; border-top:2px solid #d7b75f; border-bottom:1px solid #344250; font-size:clamp(1.35rem,3vw,2rem); letter-spacing:.04em; }
+.rule-callout small { display:block; margin-top:8px; color:#aab4bf; font-size:.8rem; font-weight:500; letter-spacing:0; }
+.legal-throws,.format-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.legal-throws>div,.format-cards>div { padding:22px; border:1px solid #344250; border-radius:8px; background:#0e1720; }
+.legal-throws span { font-size:2.5rem; }
+.legal-throws h3,.format-cards h3 { margin:10px 0; font-size:1.35rem; text-transform:uppercase; }
+.format-cards>div>span,.mode-label { color:#d7b75f; font-size:.68rem; font-weight:900; letter-spacing:.15em; }
+.format-cards .featured { border-color:#d7b75f; box-shadow:inset 0 0 0 1px rgba(215,183,95,.18); }
+.dominance { margin:20px 0; padding:20px; text-align:center; color:#fff; background:#0b131b; border:1px solid #344250; font-size:clamp(1rem,2.4vw,1.5rem); font-weight:900; letter-spacing:.05em; }
+.dominance span { color:#d7b75f; padding:0 8px; }
+.mode-label { display:inline-block; margin:-18px 0 20px; padding:7px 10px; border:1px solid rgba(215,183,95,.45); }
+.mode-label.alt { color:#c8d3df; border-color:#516071; }
+.section-intro { font-size:1.08rem; }
+.penalty-flow { display:flex; align-items:stretch; gap:10px; margin:28px 0; }
+.penalty-flow span { flex:1; padding:18px 12px; border:1px solid #344250; background:#0e1720; color:#d7b75f; font-size:.7rem; text-align:center; }
+.penalty-flow strong { display:block; margin-top:5px; font-size:.9rem; }
+.penalty-flow i { align-self:center; color:#d7b75f; font-style:normal; }
+.chips { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0; }
+.chips span { padding:9px 12px; border:1px solid #3a4857; border-radius:99px; color:#d6dce3; font-size:.85rem; }
+.quick-reference { padding:46px; border:1px solid rgba(215,183,95,.5); background:linear-gradient(145deg,#152335,#0a1118); }
+.quick-reference h2 { margin-top:0; font-size:clamp(2rem,4vw,3.2rem); text-transform:uppercase; }
+.quick-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:#344250; border:1px solid #344250; }
+.quick-grid div { padding:18px; background:#0d1720; }
+.quick-grid b,.quick-grid span { display:block; }
+.quick-grid b { color:#d7b75f; font-size:.7rem; letter-spacing:.12em; margin-bottom:5px; }
+.quick-grid span { color:#e4e8ed; }
+.footer-crest { width:72px; height:72px; object-fit:contain; display:block; margin:0 auto 8px; }
+@media(max-width:850px){.rules-layout{grid-template-columns:1fr;gap:0}.rules-nav{position:relative;top:0;display:none}.rule-summary,.legal-throws,.format-cards{grid-template-columns:1fr}.rule-summary div{border-right:0;border-bottom:1px solid #334151}.rule-summary div:last-child{border-bottom:0}.penalty-flow{display:grid;grid-template-columns:1fr}.penalty-flow i{display:none}.quick-grid{grid-template-columns:1fr}.crest-logo img{height:58px}}
+@media(max-width:600px){.throws-strip{grid-template-columns:1fr}.rules-hero-inner{padding-top:55px}.quick-reference{padding:28px 20px}.rulebook .rule-section>h2{font-size:2.4rem}}
+
+
+/* Rules page hardening overrides */
+.rules-body { margin:0; background:#07111b; color:#f4f6f8; }
+.rules-body .site-header { width:min(1180px,calc(100% - 40px)); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:30px; }
+.rules-body .site-header nav { display:flex; gap:28px; flex-wrap:wrap; }
+.rules-body .site-header nav a { text-decoration:none; }
+.rules-hero-page h1 { margin:.15em 0 .08em; }
+.rules-hero-page .eyebrow { color:#d7b75f; text-transform:uppercase; letter-spacing:.16em; font-weight:800; }
+.rules-hero-page p { max-width:none; }
+.rules-layout a { text-decoration:none; }
+@media(max-width:700px){
+  .rules-body .site-header { align-items:flex-start; }
+  .rules-body .site-header nav { gap:12px 18px; justify-content:flex-end; }
+}
+
+</style>
+</head>
+<body class="rules-body">
+<header class="site-header rules-site-header">
+  <a class="logo crest-logo" href="/"><img src="../assets/images/ifrps-crest.png" alt="IFRPS crest"></a>
+  <nav>
+    <a href="/about/">About</a><a class="active" href="/rules/">Rules</a><a href="/rankings/">Rankings</a><a href="/tournaments/">Tournaments</a>
+  </nav>
+</header>
+
+<main>
+<section class="rules-hero-page">
+  <div class="rules-hero-inner">
+    <p class="eyebrow">International Federation of Rock Paper Scissors</p>
+    <h1>Official Rules</h1>
+    <p class="rules-edition">IFRPS Official Rules · Version 1.0</p>
+    <p class="rules-lead">The international competitive standard for Rock Paper Scissors.</p>
+    <div class="rule-summary">
+      <div><span>STANDARD MATCH</span><strong>Best of 3</strong></div>
+      <div><span>PRIMARY MODE</span><strong>Standard RPS</strong></div>
+      <div><span>STANDARD CADENCE</span><strong>Rock · Paper · Scissors · Shoot</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="throws-strip" aria-label="Legal throws">
+  <article><div class="throw-icon">✊</div><h2>Rock</h2><p>Defeats Scissors</p></article>
+  <article><div class="throw-icon">✋</div><h2>Paper</h2><p>Defeats Rock</p></article>
+  <article><div class="throw-icon">✌</div><h2>Scissors</h2><p>Defeats Paper</p></article>
+</section>
+
+<div class="rules-layout">
+<aside class="rules-nav"><p>RULEBOOK</p>
+  <a href="#rule-1"><b>01</b> The Game</a><a href="#rule-2"><b>02</b> Legal Throws</a><a href="#rule-3"><b>03</b> The Engagement</a><a href="#rule-4"><b>04</b> Match Format</a><a href="#rule-5"><b>05</b> Timing</a><a href="#rule-6"><b>06</b> Standard RPS</a><a href="#rule-7"><b>07</b> Concealed Throw</a><a href="#rule-8"><b>08</b> Communication</a><a href="#rule-9"><b>09</b> Officiating</a><a href="#rule-10"><b>10</b> Penalties</a><a href="#rule-11"><b>11</b> Player Conduct</a><a href="#rule-12"><b>12</b> Tournament Play</a><a href="#rule-13"><b>13</b> Remote Competition</a><a href="#rule-14"><b>14</b> Rules Authority</a>
+</aside>
+<article class="rulebook">
+
+<section class="rule-section" id="rule-1"><div class="rule-kicker">RULE 01</div><h2>The Game</h2>
+<h3>1.1 · Definition</h3><p>Rock Paper Scissors is a competitive game between two players. Each player independently selects one of three legal throws: <strong>Rock, Paper, or Scissors.</strong> Both players reveal their selections simultaneously. The result of an engagement is determined by the relationship between the two legal throws.</p>
+<h3>1.2 · Competitive Elements</h3><p>Competitive Rock Paper Scissors incorporates selection, prediction, pattern recognition, timing, bluffing, misdirection, and psychological strategy. Players may observe, communicate with, bluff, misdirect, and attempt to influence one another within the limits of these Rules.</p>
+<div class="rule-callout">Psychological play is a legitimate component of competitive RPS.</div></section>
+
+<section class="rule-section" id="rule-2"><div class="rule-kicker">RULE 02</div><h2>Legal Throws</h2>
+<div class="legal-throws"><div><span>✊</span><h3>Rock</h3><p>A closed fist.<br><strong>Defeats Scissors.</strong></p></div><div><span>✋</span><h3>Paper</h3><p>A clearly extended open hand. Hand orientation does not invalidate an otherwise unmistakable Paper throw.<br><strong>Defeats Rock.</strong></p></div><div><span>✌</span><h3>Scissors</h3><p>Two clearly separated extended fingers forming an unmistakable scissors gesture.<br><strong>Defeats Paper.</strong></p></div></div>
+<h3>2.4 · Order of Dominance</h3><div class="dominance">ROCK <span>→</span> SCISSORS <span>→</span> PAPER <span>→</span> ROCK</div><p>No legal throw possesses an inherent advantage over another.</p>
+<h3>2.5 · Illegal Throw</h3><p>A hand signal that cannot reasonably be identified as Rock, Paper, or Scissors is an <strong>Illegal Throw</strong>. Additional gestures are not legal throws in Standard RPS. The Match Official has final authority to determine whether a displayed throw constitutes a recognizable legal throw.</p></section>
+
+<section class="rule-section" id="rule-3"><div class="rule-kicker">RULE 03</div><h2>The Engagement</h2>
+<h3>3.1 · Definition</h3><p>An <strong>Engagement</strong> is one simultaneous exchange of throws between two competitors. An engagement results in a win, loss, or draw.</p>
+<h3>3.2 · Starting Position</h3><p>Before each engagement, both players shall assume the designated playing position and prepare their throwing hands for the established cadence.</p>
+<h3>3.3 · Standard Cadence</h3><div class="rule-callout big">ROCK · PAPER · SCISSORS · <strong>SHOOT</strong><small>The throw is completed on SHOOT.</small></div>
+<h3>3.4 · Alternate Cadence</h3><p>An established regional or cultural cadence may be used when declared before competition begins. Players must be informed of the designated release point and both players must complete their throws simultaneously on that point. The words used are secondary to simultaneous release.</p>
+<h3>3.5 · Simultaneous Throw</h3><p>Both players must complete their throws at substantially the same designated release point. Neither competitor may intentionally alter the timing of a throw to obtain an unfair competitive advantage.</p>
+<h3>3.6 · Draw</h3><p>When both players display the same legal throw, the engagement is a <strong>Draw</strong>. A Draw awards no engagement victory to either player and does not count toward the victories required to win the match.</p></section>
+
+<section class="rule-section" id="rule-4"><div class="rule-kicker">RULE 04</div><h2>Match Format</h2>
+<div class="format-cards"><div class="featured"><span>STANDARD</span><h3>Best of 3</h3><p>First player to win <strong>2 decisive engagements</strong> wins the match.</p></div><div><span>HARDCORE</span><h3>Best of 1</h3><p>The first decisive engagement wins. Draws continue until a winner is determined.</p></div><div><span>EXTENDED</span><h3>Best of 5</h3><p>First player to win <strong>3 decisive engagements</strong> wins the match.</p></div></div>
+<h3>4.4 · Declared Format</h3><p>The applicable match format must be established before the match begins. A tournament may use different approved formats during different stages if the progression is published before competition begins. The format of an individual match may not be changed after that match has begun.</p></section>
+
+<section class="rule-section" id="rule-5"><div class="rule-kicker">RULE 05</div><h2>Timing</h2><p class="section-intro">Timing violations describe <strong>when a throw occurred</strong>. A timing violation alone does not establish an intent to cheat.</p>
+<h3>5.1 · Legal Timing</h3><p>A legal throw is completed at the designated release point of the established cadence.</p>
+<h3>5.2 · Premature Throw</h3><p>A <strong>Premature Throw</strong> occurs when a player clearly reveals a completed throw before the designated release point.</p>
+<h3>5.3 · Delayed Throw</h3><p>A <strong>Delayed Throw</strong> occurs when a player completes a throw after the designated release point.</p>
+<h3>5.4 · Accidental Timing Violation</h3><div class="rule-callout big"><strong>WARNING + REPLAY</strong><small>Premature and Delayed Throws receive the same initial treatment.</small></div><p>An isolated timing violation determined by the Match Official to be an ordinary timing error shall normally result in a warning and replay. A Delayed Throw does not, by itself, establish intentional cheating.</p>
+<h3>5.5 · Repeated Timing Violations</h3><p>Repeated timing violations may result in an engagement penalty when the violations materially disrupt competition or repeatedly prevent simultaneous play.</p>
+<h3>5.6 · Intentional Timing Violation</h3><p>A competitor may not intentionally manipulate throw timing to obtain a competitive advantage. In Standard RPS, this includes intentionally delaying a throw for the purpose of observing and reacting to the opponent's selection. Intentional timing manipulation may result in an immediate Engagement Penalty.</p></section>
+
+<section class="rule-section" id="rule-6"><div class="rule-kicker">RULE 06</div><h2>Standard RPS</h2><div class="mode-label">PRIMARY COMPETITIVE MODE</div><p>Standard RPS is the traditional and primary form of Rock Paper Scissors recognized by the IFRPS. Players compete face-to-face with their throws openly visible.</p>
+<h3>6.1 · Observation</h3><p>Players may freely observe their opponent before and during an engagement. Reading patterns, behavior, body language, rhythm, confidence, strategy, and tendencies is a lawful element of Standard RPS.</p>
+<h3>6.2 · Information Advantage</h3><p>Players may use information obtained naturally through lawful observation. A player may not delay a throw to obtain information from an opponent's already completed selection.</p></section>
+
+<section class="rule-section" id="rule-7"><div class="rule-kicker">RULE 07</div><h2>Concealed Throw RPS</h2><div class="mode-label alt">OFFICIAL ALTERNATE COMPETITIVE MODE</div><p>Concealed Throw RPS preserves face-to-face psychological competition while preventing either player from viewing the opponent's completed throw.</p>
+<h3>7.1 · Player Position</h3><p>Players remain positioned face-to-face and should retain an unobstructed view of the opponent's face and upper body whenever practical.</p>
+<h3>7.2 · Concealed Throw Zone</h3><p>Each competitor makes their throw within a designated <strong>Concealed Throw Zone</strong>. The setup must prevent either player from viewing the opposing completed throw, allow the Match Official to clearly observe both throws, and preserve face-to-face interaction whenever practical.</p>
+<h3>7.3 · Psychological Competition</h3><p>Only the completed throw is concealed. Players remain free to observe, talk, bluff, predict, misdirect, challenge, and otherwise lawfully attempt to influence their opponent.</p>
+<h3>7.4 · Timing</h3><p>Premature and Delayed Throws remain timing violations. Because the opposing throw is concealed, a Delayed Throw shall not automatically be considered an attempt to react to the opponent's selection. Repeated timing violations may nevertheless be penalized for disruption.</p></section>
+
+<section class="rule-section" id="rule-8"><div class="rule-kicker">RULE 08</div><h2>Communication &amp; Psychological Play</h2><div class="rule-callout big"><strong>TALKING IS PERMITTED.</strong><small>Psychological interaction is part of competitive Rock Paper Scissors.</small></div>
+<h3>8.1 · Bluffing &amp; Misdirection</h3><p>Players may make statements concerning their intended throw, their opponent's intended throw, patterns, predictions, and strategy. Statements concerning a player's intended selection are <strong>not binding</strong>. A competitor may intentionally provide false or misleading information concerning their intended throw.</p>
+<h3>8.2 · Competitive Banter</h3><p>Light competitive banter is permitted. Players may challenge an opponent's confidence, skill, strategy, predictions, or likelihood of winning provided the communication remains sporting. Competitive speech does not become prohibited merely because it is intended to place psychological pressure on an opponent.</p>
+<h3>8.3 · Prohibited Communication</h3><p>Players may not use profanity, personal attacks, abusive or degrading insults, threats, discriminatory or hateful language, sexually inappropriate remarks, or other offensive or hostile language.</p>
+<h3>8.4 · Interference</h3><p>Speech may not be used to interfere with an opponent's ability to execute a legal throw. A player may not intentionally shout during release, speak over the official cadence, make sudden disruptive noises during release, or otherwise use communication to disrupt the opponent's throw.</p>
+<div class="rule-callout">Psychological pressure is legal. Interference is not.</div></section>
+
+<section class="rule-section" id="rule-9"><div class="rule-kicker">RULE 09</div><h2>Officiating</h2>
+<h3>9.1 · Match Official</h3><p>A <strong>Match Official</strong> is an individual authorized to administer an IFRPS-recognized match. The Match Official enforces the Rules and determines the official result of each engagement.</p>
+<h3>9.2 · Authority</h3><ol><li>Determine engagement results.</li><li>Determine whether a throw is legal.</li><li>Identify timing violations.</li><li>Issue warnings.</li><li>Order an engagement replayed.</li><li>Assess engagement penalties.</li><li>Enforce player conduct standards.</li><li>Stop a match when necessary.</li><li>Refer serious misconduct for additional disciplinary action.</li></ol>
+<h3>9.3 · Standard of Officiating</h3><p>Officials shall base rulings upon observable conduct whenever possible. A violation identifies what occurred. Intent is considered separately when determining whether an enhanced penalty is appropriate. A timing violation alone shall not establish an intent to cheat.</p>
+<h3>9.4 · Neutrality</h3><p>A Match Official shall administer competition impartially and may not intentionally favor or disadvantage a competitor.</p></section>
+
+<section class="rule-section" id="rule-10"><div class="rule-kicker">RULE 10</div><h2>Penalties</h2><div class="penalty-flow"><span>01<br><strong>Warning</strong></span><i>→</i><span>02<br><strong>Engagement Penalty</strong></span><i>→</i><span>03<br><strong>Match Penalty</strong></span><i>→</i><span>04<br><strong>Disqualification</strong></span></div>
+<h3>10.1 · Application</h3><p>Progressive discipline should ordinarily be used unless the seriousness of an offense requires immediate stronger action. Officials may consider frequency, intent, competitive advantage, effect on the opponent, effect on the match, and previous warnings.</p>
+<h3>10.2 · Serious Misconduct</h3><p>Immediate match forfeiture or disqualification may be imposed for intentional cheating, threats, physical aggression, deliberate interference, serious abusive conduct, repeated refusal to follow official instructions, or other behavior that seriously compromises the integrity or safety of competition.</p></section>
+
+<section class="rule-section" id="rule-11"><div class="rule-kicker">RULE 11</div><h2>Player Conduct</h2>
+<h3>11.1 · Sportsmanship</h3><p>Players shall compete honestly and treat opponents, officials, spectators, and tournament personnel with reasonable respect. Competitive intensity is permitted. Players are <strong>not required to be friendly</strong> toward their opponents. They are required to remain sporting.</p>
+<h3>11.2 · Celebration</h3><p>Players may celebrate victories and successful engagements. Celebration may not become threatening, abusive, excessively disruptive, or intentionally humiliating toward an opponent.</p>
+<h3>11.3 · Physical Contact</h3><p>A competitor may not intentionally make unwanted physical contact with an opponent or physically interfere with an opponent's ability to compete.</p>
+<h3>11.4 · Officials</h3><p>Players shall comply with lawful instructions issued by Match Officials. A competitor may disagree with a ruling, but disagreement does not permit abusive or threatening conduct toward an official.</p></section>
+
+<section class="rule-section" id="rule-12"><div class="rule-kicker">RULE 12</div><h2>Tournament Play</h2>
+<h3>12.1 · Approved Structures</h3><div class="chips"><span>Single Elimination</span><span>Double Elimination</span><span>Round Robin</span><span>Swiss</span><span>Group Stage</span><span>Group + Knockout</span></div>
+<h3>12.2 · Published Competition Rules</h3><p>Before competition begins, organizers shall publish the applicable match format, tournament structure, advancement rules, tiebreak procedures, and any approved event-specific regulations.</p>
+<h3>12.3 · Competitive Consistency</h3><p>All competitors within the same tournament stage shall be subject to the same match format and competition rules.</p>
+<h3>12.4 · Sanctioning</h3><p>Additional standards may apply when a tournament seeks designation as <strong>IFRPS Recognized</strong>, <strong>IFRPS Sanctioned</strong>, or <strong>IFRPS Major</strong>. Tournament sanctioning requirements are established separately from the Official Rules of Play.</p></section>
+
+<section class="rule-section" id="rule-13"><div class="rule-kicker">RULE 13</div><h2>Remote Competition</h2><div class="rule-callout">Official competition can happen anywhere.</div>
+<h3>13.1 · Remote Match</h3><p>Players may compete from separate locations through an approved live-video system. A certified Match Official may administer the match remotely.</p>
+<h3>13.2 · Remote-Officiated In-Person Match</h3><p>Two competitors may be physically present together while the Match Official participates remotely through live video. The official must maintain a sufficiently clear view of both competitors and their throws.</p>
+<h3>13.3 · Video Requirements</h3><p>The Match Official must have a clear and continuous view sufficient to determine player identity, throw timing, legal throws, engagement results, and rule compliance. Additional camera or verification requirements may apply to higher levels of competition.</p>
+<h3>13.4 · Technical Failure</h3><p>If video, audio, or network failure prevents the Match Official from reliably determining the result of an engagement, <strong>no result is recorded</strong>. The engagement shall be replayed after fair competition can resume.</p></section>
+
+<section class="rule-section" id="rule-14"><div class="rule-kicker">RULE 14</div><h2>Rules Authority</h2>
+<h3>14.1 · The Fundamental Standard</h3><div class="dominance">ROCK <span>→</span> SCISSORS <span>→</span> PAPER <span>→</span> ROCK</div><p>IFRPS Standard Rock Paper Scissors consists of three legal throws and this fundamental relationship. Tournament formats, match lengths, regional cadences, and competition environments may vary. The fundamental game does not.</p>
+<h3>14.2 · Matters Not Specifically Covered</h3><p>When a situation is not expressly addressed by these Rules, the Match Official shall make a ruling consistent with competitive fairness, simultaneous independent selection, prevention of unfair informational advantage, sportsmanship, player safety, and the fundamental character of Rock Paper Scissors.</p>
+<h3>14.3 · Alternate Disciplines</h3><p>Games involving additional throws, altered dominance relationships, or expanded mechanics are not Standard RPS. IFRPS may establish standardized rules for alternate competitive disciplines with their own rules, ratings, records, titles, tournaments, and championships. Alternate disciplines do not replace Standard RPS.</p>
+<h3>14.4 · Amendments</h3><p>The International Federation of Rock Paper Scissors may issue Official Interpretations, Technical Standards, Competition Regulations, and Rule Amendments. Each official edition shall identify its version and effective date.</p></section>
+
+<section class="quick-reference"><p class="eyebrow">Quick Reference</p><h2>Three Throws. One Standard.</h2><div class="quick-grid"><div><b>STANDARD MATCH</b><span>Best of 3 · First to 2 wins</span></div><div><b>STANDARD CADENCE</b><span>Rock · Paper · Scissors · Shoot</span></div><div><b>TIMING ERROR</b><span>Warning + Replay</span></div><div><b>PSYCHOLOGICAL PLAY</b><span>Talking, bluffing &amp; light banter permitted</span></div></div></section>
+</article></div>
+</main>
+<footer><img class="footer-crest" src="../assets/images/ifrps-crest.png" alt=""><p>&copy; 2026 IFRPS. All rights reserved.</p></footer>
+</body></html>
