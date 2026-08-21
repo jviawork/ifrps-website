@@ -2,11 +2,11 @@
    IFRPS OFFICIAL RULES
 ======================================== */
 .crest-logo img { height: 72px; }
-.site-header { padding-top: 14px; padding-bottom: 14px; }
-.site-header nav a.active { color:#d7b75f; }
-.hero-page { border-top:1px solid rgba(215,183,95,.2); border-bottom:1px solid rgba(215,183,95,.25); background:radial-gradient(circle at 50% 0%,rgba(215,183,95,.12),transparent 45%),linear-gradient(180deg,rgba(11,21,32,.5),rgba(4,9,14,.72)); }
-.hero-inner { width:min(1180px,calc(100% - 40px)); margin:auto; padding:86px 0 58px; text-align:center; }
-.hero-page h1 { font-size:clamp(3.6rem,9vw,7.2rem); text-transform:uppercase; letter-spacing:-.035em; }
+.rules-site-header { padding-top: 14px; padding-bottom: 14px; }
+.rules-site-header nav a.active { color:#d7b75f; }
+.rules-hero-page { border-top:1px solid rgba(215,183,95,.2); border-bottom:1px solid rgba(215,183,95,.25); background:radial-gradient(circle at 50% 0%,rgba(215,183,95,.12),transparent 45%),linear-gradient(180deg,rgba(11,21,32,.5),rgba(4,9,14,.72)); }
+.rules-hero-inner { width:min(1180px,calc(100% - 40px)); margin:auto; padding:86px 0 58px; text-align:center; }
+.rules-hero-page h1 { font-size:clamp(3.6rem,9vw,7.2rem); text-transform:uppercase; letter-spacing:-.035em; }
 .rules-edition { color:#d7b75f; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
 .rules-lead { color:#c9d0d8; font-size:1.2rem; }
 .rule-summary { max-width:980px; margin:40px auto 0; display:grid; grid-template-columns:repeat(3,1fr); border:1px solid #334151; background:rgba(7,13,19,.65); }
