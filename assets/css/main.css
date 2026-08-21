@@ -36,22 +36,26 @@ a {
 }
 
 .logo img {
-  height: 180px;      /* Adjust this if needed */
+  height: 100px;
   width: auto;
   display: block;
 }
 
-nav {
+.site-header nav {
   display: flex;
   gap: 24px;
 }
 
-nav a {
+.site-header nav a {
   color: #d7dde5;
 }
 
-nav a:hover {
+.site-header nav a:hover {
   color: white;
+}
+
+.site-header nav a.active {
+  color: #d7b75f;
 }
 
 .hero {
