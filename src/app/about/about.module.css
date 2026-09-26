@@ -1,0 +1,5 @@
+.grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.card { padding:28px; }
+.card h2 { margin-top:0; }
+.card p { color:var(--color-gold); line-height:1.7; }
+@media(max-width:800px){.grid{grid-template-columns:1fr;}}

@@ -1,0 +1,42 @@
+.rankingControls {
+  max-width: 360px;
+  margin-bottom: 24px;
+}
+
+.rankingLabel {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--color-gold);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.rankingSelect {
+  width: 100%;
+  padding: 12px 14px;
+
+  color: var(--color-text);
+  background: var(--color-surface);
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+
+  font: inherit;
+  cursor: pointer;
+
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.rankingSelect:hover {
+  border-color: var(--color-ice);
+}
+
+.rankingSelect:focus {
+  border-color: var(--color-gold);
+  outline: 2px solid var(--color-gold-soft);
+  outline-offset: 2px;
+}

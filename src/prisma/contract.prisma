@@ -1,0 +1,101 @@
+// use prisma-next
+enum OrganizationStatus {
+  @@type("pg/text@1")
+  Pending   = "pending"
+  Verified  = "verified"
+  Suspended = "suspended"
+  Inactive  = "inactive"
+}
+
+enum MembershipStatus {
+  @@type("pg/text@1")
+  Pending   = "pending"
+  Active    = "active"
+  Suspended = "suspended"
+  Inactive  = "inactive"
+}
+model Organization {
+  id         Int      @id @default(autoincrement())
+  slug       String   @unique
+  name       String
+  region     String?
+  status OrganizationStatus @default(Pending)
+  websiteUrl String?
+  isActive   Boolean  @default(true)
+
+  memberships Membership[]
+  ratingSystems RatingSystem[]
+
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+  
+}
+
+model Player {
+  id          Int     @id @default(autoincrement())
+  slug        String  @unique
+  displayName String
+  countryCode String?
+  isActive    Boolean @default(true)
+
+  memberships Membership[]
+  ratings     Rating[]
+
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+}
+
+model Membership {
+  id             Int    @id @default(autoincrement())
+  playerId       Int
+  organizationId Int
+  status MembershipStatus @default(Pending)
+  verifiedAt     TimestamptzString?
+  endedAt        TimestamptzString?
+
+  player       Player       @relation(fields: [playerId], references: [id])
+  organization Organization @relation(fields: [organizationId], references: [id])
+
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+
+  @@unique([playerId, organizationId])
+}
+
+model RatingSystem {
+  id              Int     @id @default(autoincrement())
+  slug            String  @unique
+  name            String
+  organizationId  Int?
+  organization Organization? 
+  @relation(fields: [organizationId], references: [id])
+  isInternational Boolean @default(false)
+  isActive        Boolean @default(true)
+  
+  startingRating     Int @default(1500)
+  provisionalMatches Int @default(10)
+  kFactor            Int @default(32)
+
+  
+
+  ratings Rating[]
+
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+}
+
+model Rating {
+  id             Int @id @default(autoincrement())
+  playerId       Int
+  ratingSystemId Int
+  value          Int
+  gamesPlayed    Int @default(0)
+
+  player       Player       @relation(fields: [playerId], references: [id])
+  ratingSystem RatingSystem @relation(fields: [ratingSystemId], references: [id])
+
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+
+  @@unique([playerId, ratingSystemId])
+}

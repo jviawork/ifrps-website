@@ -1,0 +1,157 @@
+.hero {
+  padding: 105px 0 85px;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 20px;
+  color: var(--color-gold);
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 1100px;
+  margin: 0 auto;
+  font-size: clamp(3.2rem, 8vw, 7rem);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+}
+
+.hero h1 span {
+  display: block;
+  color: var(--color-gold);
+}
+
+.lead {
+  max-width: 760px;
+  margin: 30px auto 0;
+  color: #c9d0d8;
+  font-size: 1.15rem;
+  line-height: 1.75;
+}
+
+.actions {
+  margin-top: 36px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.statGrid > div {
+  padding: 23px;
+  display: grid;
+  gap: 5px;
+  text-align: center;
+}
+
+.statGrid span {
+  color: var(--color-text-subtle);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.statGrid strong {
+  font-size: 1.25rem;
+}
+
+.statGrid small {
+  color: var(--color-gold);
+}
+
+.federationSection {
+  padding: 72px 0;
+  border-block: 1px solid rgba(215, 183, 95, 0.16);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(7, 17, 27, 0.82),
+      rgba(10, 18, 27, 0.92)
+    );
+}
+
+.federationIntro {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.federationIntro h2 {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.federationIntro > p:last-child {
+  margin: 24px auto 0;
+  color: var(--color-text-muted);
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+.federationFeatures {
+  margin-top: 42px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.federationFeatures > div {
+  padding: 24px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: rgba(14, 23, 32, 0.7);
+}
+
+.federationFeatures strong,
+.federationFeatures span {
+  display: block;
+}
+
+.federationFeatures strong {
+  color: var(--color-gold);
+  font-size: 1rem;
+}
+
+.federationFeatures span {
+  margin-top: 8px;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.federationAction {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.federationAction a {
+  gap: 0.6rem
+}
+
+
+/* sets view for different devices */
+@media (max-width: 700px) {
+  .hero {
+    padding-top: 72px;
+  }
+
+  .statGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .federationFeatures {
+    grid-template-columns: 1fr;
+  }
+}

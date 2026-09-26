@@ -1,0 +1,10 @@
+.columns { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.feature { padding:32px; }
+.feature h2 { font-size:2rem; margin:18px 0 10px; }
+.feature p { color:var(--color-text-muted); line-height:1.7; }
+.pathways { display:grid; gap:12px; }
+.path { padding:22px; display:grid; grid-template-columns:52px 1fr; gap:18px; align-items:start; }
+.path>span { color:var(--color-gold); font-size:1.3rem; font-weight:900; }
+.path h3 { margin:0 0 7px; }
+.path p { margin:0; color:var(--color-text-muted); line-height:1.65; }
+@media(max-width:760px){.columns{grid-template-columns:1fr;}}

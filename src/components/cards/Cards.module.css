@@ -1,0 +1,32 @@
+.card {
+  padding: 24px;
+}
+
+.card h3 {
+  margin: 18px 0 10px;
+  font-size: 1.3rem;
+}
+
+.card p {
+  color: var(--color-text-muted);
+  line-height: 1.65;
+}
+
+.card time {
+  color: var(--color-text-subtle);
+  font-size: 0.82rem;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--color-text-subtle);
+  font-size: 0.76rem;
+}
+
+.result {
+  color: var(--color-gold) !important;
+  font-weight: 800;
+}

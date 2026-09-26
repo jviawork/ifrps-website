@@ -1,0 +1,72 @@
+.rulesBody { background:var(--color-bg); }
+.hero { border-top:1px solid rgba(215,183,95,.2); border-bottom:1px solid rgba(215,183,95,.25); background:radial-gradient(circle at 50% 0%,rgba(215,183,95,.12),transparent 45%),linear-gradient(180deg,rgba(11,21,32,.5),rgba(4,9,14,.72)); }
+.heroInner { width:min(var(--content-width),calc(100% - (var(--content-padding)*2))); margin:auto; padding:86px 0 58px; text-align:center; }
+.hero h1 { margin:.15em 0 .08em; font-size:clamp(3.6rem,9vw,7.2rem); text-transform:uppercase; letter-spacing:-.035em; }
+.edition { color:var(--color-gold); font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+.lead { color:#c9d0d8; font-size:1.2rem; }
+.summary { max-width:980px; margin:40px auto 0; display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--color-border); background:rgba(7,13,19,.65); }
+.summary div { padding:22px 18px; border-right:1px solid var(--color-border); }
+.summary div:last-child { border-right:0; }
+.summary span,.summary strong { display:block; }
+.summary span { margin-bottom:7px; color:var(--color-text-subtle); font-size:.7rem; font-weight:800; letter-spacing:.14em; }
+.throws { width:min(1050px,calc(100% - (var(--content-padding)*2))); margin:42px auto 10px; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.throws article { padding:28px 15px; border:1px solid var(--color-border); border-radius:var(--radius-md); text-align:center; background:linear-gradient(180deg,rgba(35,54,75,.6),rgba(10,17,24,.8)); }
+.throws article div { font-size:3.5rem; }
+.throws h2 { margin:8px 0 4px; text-transform:uppercase; }
+.throws p { margin:0; color:var(--color-gold); font-weight:700; }
+.layout { width:min(var(--content-width),calc(100% - (var(--content-padding)*2))); margin:65px auto; display:grid; grid-template-columns:220px minmax(0,820px); gap:70px; justify-content:center; align-items:start; }
+.nav { position:sticky; top:22px; padding:20px 0; border-top:2px solid var(--color-gold); }
+.nav p { color:var(--color-gold); font-size:.72rem; letter-spacing:.18em; font-weight:900; }
+.nav a { display:flex; gap:10px; padding:7px 0; color:#98a4b1; font-size:.88rem; transition:color var(--transition-fast); }
+.nav a:hover { color:#fff; }
+.nav b { color:var(--color-gold); min-width:23px; }
+.ruleSection { scroll-margin-top:20px; padding-bottom:68px; margin-bottom:64px; border-bottom:1px solid var(--color-border-soft); }
+.kicker { color:var(--color-gold); font-weight:900; letter-spacing:.18em; font-size:.75rem; }
+.rulebook .ruleSection>h2 { margin:8px 0 34px; font-size:clamp(2.4rem,5vw,4rem); line-height:1; text-transform:uppercase; }
+.rulebook h3 { margin:34px 0 10px; font-size:1.12rem; color:var(--color-text); }
+.rulebook p,.rulebook li { color:var(--color-text-muted); line-height:1.75; }
+.rulebook strong { color:#fff; }
+.rulebook ol { padding-left:22px; }
+.callout { margin:28px 0; padding:20px 24px; border-left:4px solid var(--color-gold); background:var(--color-surface-alt); color:#fff; font-weight:800; }
+.big { text-align:center; border-left:0; border-top:2px solid var(--color-gold); border-bottom:1px solid var(--color-border); font-size:clamp(1.35rem,3vw,2rem); letter-spacing:.04em; }
+.callout small { display:block; margin-top:8px; color:#aab4bf; font-size:.8rem; font-weight:500; letter-spacing:0; }
+.legalThrows,.formatCards { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.legalThrows>div,.formatCards>div { padding:22px; border:1px solid var(--color-border); border-radius:var(--radius-md); background:var(--color-surface); }
+.legalThrows span { font-size:2.5rem; }
+.legalThrows h3,.formatCards h3 { margin:10px 0; font-size:1.35rem; text-transform:uppercase; }
+.formatCards>div>span,.modeLabel { color:var(--color-gold); font-size:.68rem; font-weight:900; letter-spacing:.15em; }
+.featured { border-color:var(--color-gold)!important; box-shadow:inset 0 0 0 1px var(--color-gold-soft); }
+.dominance { margin:20px 0; padding:20px; text-align:center; color:#fff; background:#0b131b; border:1px solid var(--color-border); font-size:clamp(1rem,2.4vw,1.5rem); font-weight:900; letter-spacing:.05em; }
+.dominance span { color:var(--color-gold); padding:0 8px; }
+.modeLabel { display:inline-block; margin:-18px 0 20px; padding:7px 10px; border:1px solid rgba(215,183,95,.45); }
+.alt { color:#c8d3df; border-color:#516071; }
+.penaltyFlow { display:flex; align-items:stretch; gap:10px; margin:28px 0; }
+.penaltyFlow span { flex:1; padding:18px 12px; border:1px solid var(--color-border); background:var(--color-surface); color:var(--color-gold); font-size:.7rem; text-align:center; }
+.penaltyFlow strong { display:block; margin-top:5px; font-size:.9rem; }
+.penaltyFlow i { align-self:center; color:var(--color-gold); font-style:normal; }
+.chips { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0; }
+.chips span { padding:9px 12px; border:1px solid #3a4857; border-radius:999px; color:#d6dce3; font-size:.85rem; }
+.quickReference { padding:46px; border:1px solid rgba(215,183,95,.5); background:linear-gradient(145deg,#152335,#0a1118); }
+.quickReference h2 { margin-top:0; font-size:clamp(2rem,4vw,3.2rem); text-transform:uppercase; }
+.quickGrid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--color-border); border:1px solid var(--color-border); }
+.quickGrid div { padding:18px; background:#0d1720; }
+.quickGrid b,.quickGrid span { display:block; }
+.quickGrid b { color:var(--color-gold); font-size:.7rem; letter-spacing:.12em; margin-bottom:5px; }
+.quickGrid span { color:#e4e8ed; }
+
+@media(max-width:850px){
+  .layout{grid-template-columns:1fr;gap:0}
+  .nav{display:none}
+  .summary,.legalThrows,.formatCards{grid-template-columns:1fr}
+  .summary div{border-right:0;border-bottom:1px solid var(--color-border)}
+  .summary div:last-child{border-bottom:0}
+  .penaltyFlow{display:grid;grid-template-columns:1fr}
+  .penaltyFlow i{display:none}
+  .quickGrid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .throws{grid-template-columns:1fr}
+  .heroInner{padding-top:55px}
+  .quickReference{padding:28px 20px}
+  .rulebook .ruleSection>h2{font-size:2.4rem}
+}

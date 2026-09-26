@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 650">
+<defs>
+<linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#78838e"/><stop offset=".45" stop-color="#46515c"/><stop offset="1" stop-color="#0a0f14"/></linearGradient>
+<filter id="s"><feDropShadow dx="0" dy="26" stdDeviation="22" flood-opacity=".55"/></filter>
+</defs>
+<g filter="url(#s)">
+<path d="M104 398L145 216L258 86L420 54L579 130L657 302L628 482L495 587L290 579L150 510Z" fill="url(#b)" stroke="#080d12" stroke-width="13"/>
+<path d="M145 216L258 86L316 244L104 398Z" fill="#9aa4ae" opacity=".82"/>
+<path d="M258 86L420 54L460 232L316 244Z" fill="#6b7680"/>
+<path d="M420 54L579 130L519 267L460 232Z" fill="#3f4953"/>
+<path d="M316 244L460 232L480 440L344 462Z" fill="#d7b75f" opacity=".42"/>
+<path d="M460 232L519 267L628 482L480 440Z" fill="#1c242c"/>
+<path d="M344 462L480 440L495 587L290 579Z" fill="#111820"/>
+</g></svg>

@@ -1,0 +1,829 @@
+[
+  {
+    "id": "schema.public",
+    "label": "Create schema \"public\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres"
+    },
+    "precheck": [],
+    "execute": [
+      {
+        "description": "Create schema \"public\"",
+        "sql": "CREATE SCHEMA IF NOT EXISTS \"public\"",
+        "params": []
+      }
+    ],
+    "postcheck": []
+  },
+  {
+    "id": "table.membership",
+    "label": "Create table \"membership\"",
+    "summary": "Creates table \"membership\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "membership"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"membership\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"membership\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"membership\"",
+        "sql": "CREATE TABLE \"public\".\"membership\" (\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"endedAt\" timestamptz,\n  \"id\" SERIAL NOT NULL,\n  \"organizationId\" int4 NOT NULL,\n  \"playerId\" int4 NOT NULL,\n  \"status\" text DEFAULT 'pending' NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  \"verifiedAt\" timestamptz,\n  PRIMARY KEY (\"id\"),\n  CONSTRAINT \"membership_status_check_b8b0009d\" CHECK (\"status\" IN ('pending', 'active', 'suspended', 'inactive'))\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"membership\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"membership\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.organization",
+    "label": "Create table \"organization\"",
+    "summary": "Creates table \"organization\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "organization"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"organization\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"organization\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"organization\"",
+        "sql": "CREATE TABLE \"public\".\"organization\" (\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"id\" SERIAL NOT NULL,\n  \"isActive\" bool DEFAULT true NOT NULL,\n  \"name\" text NOT NULL,\n  \"region\" text,\n  \"slug\" text NOT NULL,\n  \"status\" text DEFAULT 'pending' NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  \"websiteUrl\" text,\n  PRIMARY KEY (\"id\"),\n  CONSTRAINT \"organization_status_check_387017ab\" CHECK (\"status\" IN ('pending', 'verified', 'suspended', 'inactive'))\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"organization\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"organization\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.player",
+    "label": "Create table \"player\"",
+    "summary": "Creates table \"player\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "player"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"player\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"player\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"player\"",
+        "sql": "CREATE TABLE \"public\".\"player\" (\n  \"countryCode\" text,\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"displayName\" text NOT NULL,\n  \"id\" SERIAL NOT NULL,\n  \"isActive\" bool DEFAULT true NOT NULL,\n  \"slug\" text NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"player\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"player\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.rating",
+    "label": "Create table \"rating\"",
+    "summary": "Creates table \"rating\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "rating"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"rating\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"rating\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"rating\"",
+        "sql": "CREATE TABLE \"public\".\"rating\" (\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"gamesPlayed\" int4 DEFAULT 0 NOT NULL,\n  \"id\" SERIAL NOT NULL,\n  \"playerId\" int4 NOT NULL,\n  \"ratingSystemId\" int4 NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  \"value\" int4 NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"rating\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"rating\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.ratingSystem",
+    "label": "Create table \"ratingSystem\"",
+    "summary": "Creates table \"ratingSystem\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "ratingSystem"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"ratingSystem\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"ratingSystem\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"ratingSystem\"",
+        "sql": "CREATE TABLE \"public\".\"ratingSystem\" (\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"id\" SERIAL NOT NULL,\n  \"isActive\" bool DEFAULT true NOT NULL,\n  \"isInternational\" bool DEFAULT false NOT NULL,\n  \"kFactor\" int4 DEFAULT 32 NOT NULL,\n  \"name\" text NOT NULL,\n  \"organizationId\" int4,\n  \"provisionalMatches\" int4 DEFAULT 10 NOT NULL,\n  \"slug\" text NOT NULL,\n  \"startingRating\" int4 DEFAULT 1500 NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"ratingSystem\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"ratingSystem\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.membership.membership_playerId_organizationId_key",
+    "label": "Add unique constraint on \"membership\" (playerId, organizationId)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "membership_playerId_organizationId_key",
+        "table": "membership"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"membership_playerId_organizationId_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "membership_playerId_organizationId_key",
+          "public",
+          "\"public\".\"membership\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"membership_playerId_organizationId_key\"",
+        "sql": "ALTER TABLE \"public\".\"membership\" ADD CONSTRAINT \"membership_playerId_organizationId_key\" UNIQUE (\"playerId\", \"organizationId\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"membership_playerId_organizationId_key\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "membership_playerId_organizationId_key",
+          "public",
+          "\"public\".\"membership\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.organization.organization_slug_key",
+    "label": "Add unique constraint on \"organization\" (slug)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "organization_slug_key",
+        "table": "organization"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"organization_slug_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "organization_slug_key",
+          "public",
+          "\"public\".\"organization\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"organization_slug_key\"",
+        "sql": "ALTER TABLE \"public\".\"organization\" ADD CONSTRAINT \"organization_slug_key\" UNIQUE (\"slug\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"organization_slug_key\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "organization_slug_key",
+          "public",
+          "\"public\".\"organization\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.player.player_slug_key",
+    "label": "Add unique constraint on \"player\" (slug)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "player_slug_key",
+        "table": "player"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"player_slug_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "player_slug_key",
+          "public",
+          "\"public\".\"player\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"player_slug_key\"",
+        "sql": "ALTER TABLE \"public\".\"player\" ADD CONSTRAINT \"player_slug_key\" UNIQUE (\"slug\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"player_slug_key\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "player_slug_key",
+          "public",
+          "\"public\".\"player\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.rating.rating_playerId_ratingSystemId_key",
+    "label": "Add unique constraint on \"rating\" (playerId, ratingSystemId)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "rating_playerId_ratingSystemId_key",
+        "table": "rating"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"rating_playerId_ratingSystemId_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "rating_playerId_ratingSystemId_key",
+          "public",
+          "\"public\".\"rating\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"rating_playerId_ratingSystemId_key\"",
+        "sql": "ALTER TABLE \"public\".\"rating\" ADD CONSTRAINT \"rating_playerId_ratingSystemId_key\" UNIQUE (\"playerId\", \"ratingSystemId\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"rating_playerId_ratingSystemId_key\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "rating_playerId_ratingSystemId_key",
+          "public",
+          "\"public\".\"rating\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.ratingSystem.ratingSystem_slug_key",
+    "label": "Add unique constraint on \"ratingSystem\" (slug)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "ratingSystem_slug_key",
+        "table": "ratingSystem"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"ratingSystem_slug_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "ratingSystem_slug_key",
+          "public",
+          "\"public\".\"ratingSystem\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"ratingSystem_slug_key\"",
+        "sql": "ALTER TABLE \"public\".\"ratingSystem\" ADD CONSTRAINT \"ratingSystem_slug_key\" UNIQUE (\"slug\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"ratingSystem_slug_key\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "ratingSystem_slug_key",
+          "public",
+          "\"public\".\"ratingSystem\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.membership.membership_organizationId_idx_2e17ef41",
+    "label": "Create index \"membership_organizationId_idx_2e17ef41\" on \"membership\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "membership_organizationId_idx_2e17ef41",
+        "table": "membership"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"membership_organizationId_idx_2e17ef41\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"membership_organizationId_idx_2e17ef41\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"membership_organizationId_idx_2e17ef41\"",
+        "sql": "CREATE INDEX \"membership_organizationId_idx_2e17ef41\" ON \"public\".\"membership\" (\"organizationId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"membership_organizationId_idx_2e17ef41\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"membership_organizationId_idx_2e17ef41\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.membership.membership_playerId_idx_710cf1aa",
+    "label": "Create index \"membership_playerId_idx_710cf1aa\" on \"membership\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "membership_playerId_idx_710cf1aa",
+        "table": "membership"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"membership_playerId_idx_710cf1aa\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"membership_playerId_idx_710cf1aa\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"membership_playerId_idx_710cf1aa\"",
+        "sql": "CREATE INDEX \"membership_playerId_idx_710cf1aa\" ON \"public\".\"membership\" (\"playerId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"membership_playerId_idx_710cf1aa\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"membership_playerId_idx_710cf1aa\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.rating.rating_playerId_idx_710cf1aa",
+    "label": "Create index \"rating_playerId_idx_710cf1aa\" on \"rating\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "rating_playerId_idx_710cf1aa",
+        "table": "rating"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"rating_playerId_idx_710cf1aa\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"rating_playerId_idx_710cf1aa\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"rating_playerId_idx_710cf1aa\"",
+        "sql": "CREATE INDEX \"rating_playerId_idx_710cf1aa\" ON \"public\".\"rating\" (\"playerId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"rating_playerId_idx_710cf1aa\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"rating_playerId_idx_710cf1aa\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.rating.rating_ratingSystemId_idx_efba41db",
+    "label": "Create index \"rating_ratingSystemId_idx_efba41db\" on \"rating\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "rating_ratingSystemId_idx_efba41db",
+        "table": "rating"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"rating_ratingSystemId_idx_efba41db\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"rating_ratingSystemId_idx_efba41db\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"rating_ratingSystemId_idx_efba41db\"",
+        "sql": "CREATE INDEX \"rating_ratingSystemId_idx_efba41db\" ON \"public\".\"rating\" (\"ratingSystemId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"rating_ratingSystemId_idx_efba41db\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"rating_ratingSystemId_idx_efba41db\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.ratingSystem.ratingSystem_organizationId_idx_2e17ef41",
+    "label": "Create index \"ratingSystem_organizationId_idx_2e17ef41\" on \"ratingSystem\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "ratingSystem_organizationId_idx_2e17ef41",
+        "table": "ratingSystem"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"ratingSystem_organizationId_idx_2e17ef41\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"ratingSystem_organizationId_idx_2e17ef41\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"ratingSystem_organizationId_idx_2e17ef41\"",
+        "sql": "CREATE INDEX \"ratingSystem_organizationId_idx_2e17ef41\" ON \"public\".\"ratingSystem\" (\"organizationId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"ratingSystem_organizationId_idx_2e17ef41\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"ratingSystem_organizationId_idx_2e17ef41\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.membership.membership_playerId_fkey",
+    "label": "Add foreign key \"membership_playerId_fkey\" on \"membership\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "membership_playerId_fkey",
+        "table": "membership"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"membership_playerId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "membership_playerId_fkey",
+          "public",
+          "\"public\".\"membership\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"membership_playerId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"membership\"\nADD CONSTRAINT \"membership_playerId_fkey\"\nFOREIGN KEY (\"playerId\")\nREFERENCES \"public\".\"player\" (\"id\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"membership_playerId_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "membership_playerId_fkey",
+          "public",
+          "\"public\".\"membership\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.membership.membership_organizationId_fkey",
+    "label": "Add foreign key \"membership_organizationId_fkey\" on \"membership\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "membership_organizationId_fkey",
+        "table": "membership"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"membership_organizationId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "membership_organizationId_fkey",
+          "public",
+          "\"public\".\"membership\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"membership_organizationId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"membership\"\nADD CONSTRAINT \"membership_organizationId_fkey\"\nFOREIGN KEY (\"organizationId\")\nREFERENCES \"public\".\"organization\" (\"id\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"membership_organizationId_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "membership_organizationId_fkey",
+          "public",
+          "\"public\".\"membership\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.rating.rating_playerId_fkey",
+    "label": "Add foreign key \"rating_playerId_fkey\" on \"rating\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "rating_playerId_fkey",
+        "table": "rating"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"rating_playerId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "rating_playerId_fkey",
+          "public",
+          "\"public\".\"rating\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"rating_playerId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"rating\"\nADD CONSTRAINT \"rating_playerId_fkey\"\nFOREIGN KEY (\"playerId\")\nREFERENCES \"public\".\"player\" (\"id\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"rating_playerId_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "rating_playerId_fkey",
+          "public",
+          "\"public\".\"rating\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.rating.rating_ratingSystemId_fkey",
+    "label": "Add foreign key \"rating_ratingSystemId_fkey\" on \"rating\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "rating_ratingSystemId_fkey",
+        "table": "rating"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"rating_ratingSystemId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "rating_ratingSystemId_fkey",
+          "public",
+          "\"public\".\"rating\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"rating_ratingSystemId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"rating\"\nADD CONSTRAINT \"rating_ratingSystemId_fkey\"\nFOREIGN KEY (\"ratingSystemId\")\nREFERENCES \"public\".\"ratingSystem\" (\"id\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"rating_ratingSystemId_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "rating_ratingSystemId_fkey",
+          "public",
+          "\"public\".\"rating\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.ratingSystem.ratingSystem_organizationId_fkey",
+    "label": "Add foreign key \"ratingSystem_organizationId_fkey\" on \"ratingSystem\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "ratingSystem_organizationId_fkey",
+        "table": "ratingSystem"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"ratingSystem_organizationId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "ratingSystem_organizationId_fkey",
+          "public",
+          "\"public\".\"ratingSystem\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"ratingSystem_organizationId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"ratingSystem\"\nADD CONSTRAINT \"ratingSystem_organizationId_fkey\"\nFOREIGN KEY (\"organizationId\")\nREFERENCES \"public\".\"organization\" (\"id\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"ratingSystem_organizationId_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "ratingSystem_organizationId_fkey",
+          "public",
+          "\"public\".\"ratingSystem\""
+        ]
+      }
+    ]
+  }
+]
